@@ -17,20 +17,23 @@ class SetCommand:
 
     def __init__(self, connection):
         self._connection = connection
-        self.command = 0
+        self.cmd = 0
 
     def command(self, cmd):
-        self.command = cmd.value
+        self.cmd = cmd.value
         self._send()
 
     def _send(self):
         header = get_header_bytes()
         direction = get_direction_in_bytes()
-        length_bytes = bytearray(SetCommand.__msg_length.to_bytes(1))
-        code_bytes = bytearray(SetCommand.__msg_code.to_bytes(1))
-        payload = bytearray(self.command.to_bytes(2, byte_order="little"))
+        length_bytes = bytearray(
+            SetCommand.__msg_length.to_bytes(1, byteorder="little")
+        )
+        code_bytes = bytearray(SetCommand.__msg_code.to_bytes(1, byteorder="little"))
+        payload = bytearray(self.cmd.to_bytes(2, byteorder="little"))
 
-        message = bytearray().append(length_bytes, code_bytes, payload)
+        message = length_bytes + code_bytes + payload
         crc = calculate_crc(message)
-        packet = bytearray().append(header, direction, message, crc)
+        packet = header + direction + message
+        packet.append(crc)
         self._connection.send(packet)

@@ -4,15 +4,15 @@ DIRECTION_OUT = ">"
 
 
 def get_header_bytes():
-    return bytearray(HEADER)
+    return bytearray(HEADER, "utf-8")
 
 
 def get_direction_in_bytes():
-    return bytearray(DIRECTION_IN)
+    return bytearray(DIRECTION_IN, "utf-8")
 
 
 def get_direction_out_bytes():
-    return bytearray(DIRECTION_OUT)
+    return bytearray(DIRECTION_OUT, "utf-8")
 
 
 def calculate_crc(byte_array):
@@ -20,7 +20,3 @@ def calculate_crc(byte_array):
     for byte in byte_array:
         crc ^= byte
     return crc
-
-
-def test_import():
-    pass
