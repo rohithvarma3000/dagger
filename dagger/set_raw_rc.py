@@ -1,0 +1,2 @@
+class SetRawRC:
+    pass

@@ -10,5 +10,8 @@ class PlutoConnection:
     def connect(self):
         self._socket.connect((self.ip, self.port))
 
+    def send(self, data):
+        self._socket.send(data)
+
     def close(self):
         self._socket.close()
