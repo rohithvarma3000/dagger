@@ -1,2 +1,3 @@
 class SetRawRC:
-    pass
+    __msg_length = 16
+    __msg_code = 217
