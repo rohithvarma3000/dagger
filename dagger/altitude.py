@@ -1,5 +1,3 @@
-import struct
-import time
 from dagger.utils import get_direction_out_bytes, get_header_bytes, calculate_crc
 
 
@@ -10,7 +8,9 @@ class SetAltitude:
 
     def __init__(self, connection):
         self._connection = connection
-        self.altitude = []
+        self.altitude=0
+        self.vario=0
+
 
     def _request(self): #function for requesting the out packet
         header  = get_header_bytes()
@@ -24,8 +24,15 @@ class SetAltitude:
         self._connection.send(packet)
 
         try:
-            start = time.time()
-            status = self._response(start)
-            print(self.altitude)
+            status = self._response()
+            print(self.altitude,self.vario)
         except:
             print("Data not recieved.")
+    
+    def _response(self): #function for parsing the response
+        header=self._connection.recv(2).decode('utf-8')
+        direction=self._connection.recv(1).decode('utf-8')
+        length=self._connection.recv(1).decode('utf-8')
+        code=self._connection.recv(1).decode('utf-8')
+        self.altitude=int(self._connection.recv(4).decode('utf-8'))
+        self.vario=int(self._connection.recv(2).decode('utf-8'))
