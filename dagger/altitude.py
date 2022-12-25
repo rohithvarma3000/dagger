@@ -24,10 +24,10 @@ class SetAltitude:
         self._connection.send(packet)
 
         try:
-            status = self._response()
+            self._response()
             print(self.altitude,self.vario)
         except:
-            print("Data not recieved.")
+            print("Data not recieved/some error occured")
     
     def _response(self): #function for parsing the response
         header=self._connection.recv(2).decode('utf-8')
