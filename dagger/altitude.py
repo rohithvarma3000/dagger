@@ -36,3 +36,4 @@ class SetAltitude:
         code=self._connection.recv(1).decode('utf-8')
         self.altitude=int(self._connection.recv(4).decode('utf-8'))
         self.vario=int(self._connection.recv(2).decode('utf-8'))
+        crc=self._connection.recv(1).decode('utf-8')
