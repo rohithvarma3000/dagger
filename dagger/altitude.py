@@ -8,6 +8,9 @@ class AltitudeData:
         self.vario = vario
 
 
+ZERO = 0
+
+
 class Altitude:
     __msg_code = 109
     __msg_length = 6
@@ -20,7 +23,7 @@ class Altitude:
         direction = (
             get_direction_in_bytes()
         )  # Requesting the out packet using an in direction as mentioned in docs
-        length_bytes = bytearray(Altitude.__msg_length.to_bytes(1, byteorder="little"))
+        length_bytes = bytearray(ZERO.to_bytes(1, byteorder="little"))
         code_bytes = bytearray(Altitude.__msg_code.to_bytes(1, byteorder="little"))
         message = length_bytes + code_bytes  # no payload data
         crc = calculate_crc(message)
@@ -46,3 +49,5 @@ class Altitude:
 
         except:
             print("Data not recieved/some error occured")
+
+$M>mm\00\00\00\00\00
