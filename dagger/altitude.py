@@ -49,5 +49,3 @@ class Altitude:
 
         except:
             print("Data not recieved/some error occured")
-
-$M>mm\00\00\00\00\00
