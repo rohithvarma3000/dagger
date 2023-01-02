@@ -1,14 +1,11 @@
 import struct
-from dagger.utils import get_direction_in_bytes, get_header_bytes, calculate_crc
+from dagger.utils import get_direction_in_bytes, get_header_bytes, calculate_crc, ZERO
 
 
 class AltitudeData:
     def __init__(self, altitude, vario):
         self.altitude = altitude
         self.vario = vario
-
-
-ZERO = 0
 
 
 class Altitude:
@@ -18,7 +15,7 @@ class Altitude:
     def __init__(self, connection):
         self._connection = connection
 
-    def get(self):  # function for requesting the out packet
+    def get_(self):  # function for requesting the out packet
         header = get_header_bytes()
         direction = (
             get_direction_in_bytes()

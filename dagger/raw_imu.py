@@ -1,5 +1,5 @@
 import struct
-from dagger.utils import get_header_bytes, get_direction_in_bytes, calculate_crc
+from dagger.utils import get_header_bytes, get_direction_in_bytes, calculate_crc, ZERO
 
 
 class RawIMUData:
@@ -26,7 +26,7 @@ class RawIMU:
         header = get_header_bytes()
         direction = get_direction_in_bytes()
 
-        length_bytes = bytearray(RawIMU.__msg_length.to_bytes(1, byteorder="little"))
+        length_bytes = bytearray(ZERO.to_bytes(1, byteorder="little"))
         code_bytes = bytearray(RawIMU.__msg_code.to_bytes(1, byteorder="little"))
 
         crc = calculate_crc(length_bytes + code_bytes)

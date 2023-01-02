@@ -1,6 +1,7 @@
 HEADER = "$M"
 DIRECTION_IN = "<"
 DIRECTION_OUT = ">"
+ZERO = 0
 
 
 def get_header_bytes():
