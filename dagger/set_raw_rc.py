@@ -13,7 +13,8 @@ class SetRawRC:
         self.yaw = 1500  # Yaw command = 0
         self.aux1 = 1500  # Headfree Mode
         self.aux2 = 1000  # Developer Mode Off
-        self.aux3 = 1500  # Altitude Hold Mode
+        self.aux3 = 1500
+        # Altitude Hold Mode
         self.aux4 = 1000  # DISARM Mode
 
     def set_roll(self, roll):
@@ -32,6 +33,30 @@ class SetRawRC:
         self.yaw = yaw
         self._send()
 
+    def set_maghold_mode(self):
+        self.aux1 = 1100
+        self._send()
+
+    def set_headfree_mode(self):
+        self.aux1 = 1500
+        self._send()
+        
+    def set_developer_mode_on(self):
+        self.aux2 = 1500
+        self._send()
+
+    def set_developer_mode_off(self):
+        self.aux2 = 1100
+        self._send()
+
+    def set_alt_hold_mode(self):
+        self.aux3 = 1500
+        self._send()
+
+    def set_throttle_free_mode(self):
+        self.aux3 = 1100
+        self._send()
+        
     def arm_drone(self):
         self.aux4 = 1500
         self._send()

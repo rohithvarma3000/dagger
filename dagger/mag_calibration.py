@@ -1,7 +1,7 @@
 from dagger.utils import get_header_bytes, get_direction_in_bytes, calculate_crc
 
 
-class MagCalibartion:
+class MagCalibration:
     __msg_length = 0
     __msg_code = 206
 
@@ -13,10 +13,10 @@ class MagCalibartion:
         header = get_header_bytes()
         direction = get_direction_in_bytes()
         length_bytes = bytearray(
-            MagCalibartion.__msg_length.to_bytes(1, byteorder="little")
+            MagCalibration.__msg_length.to_bytes(1, byteorder="little")
         )
         code_bytes = bytearray(
-            MagCalibartion.__msg_code.to_bytes(1, byteorder="little")
+            MagCalibration.__msg_code.to_bytes(1, byteorder="little")
         )
 
         message = length_bytes + code_bytes
