@@ -33,6 +33,9 @@ class SetRawRC:
         self._send()
 
     def arm_drone(self):
+        self.aux1 = 0
+        self.aux2 = 0
+        self.aux3 = 0
         self.aux4 = 1500
         self._send()
 
