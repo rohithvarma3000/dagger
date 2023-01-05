@@ -15,7 +15,7 @@ class Altitude:
     def __init__(self, connection):
         self._connection = connection
 
-    def get_(self):  # function for requesting the out packet
+    def get_altitude(self):  # function for requesting the out packet
         header = get_header_bytes()
         direction = (
             get_direction_in_bytes()

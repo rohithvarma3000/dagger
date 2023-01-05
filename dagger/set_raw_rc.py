@@ -9,11 +9,11 @@ class SetRawRC:
         self._connection = connection
         self.roll = 1500  # Roll command = 0
         self.pitch = 1500  # Pitch command = 0
-        self.throttle = 1500  # Roll command = 0
+        self.throttle = 1000  # Roll command = 0
         self.yaw = 1500  # Yaw command = 0
-        self.aux1 = 1500  # Headfree Mode
-        self.aux2 = 1000  # Developer Mode Off
-        self.aux3 = 1500
+        self.aux1 = 0  # Headfree Mode
+        self.aux2 = 0  # Developer Mode Off
+        self.aux3 = 0
         # Altitude Hold Mode
         self.aux4 = 1000  # DISARM Mode
 
@@ -40,7 +40,7 @@ class SetRawRC:
     def set_headfree_mode(self):
         self.aux1 = 1500
         self._send()
-        
+
     def set_developer_mode_on(self):
         self.aux2 = 1500
         self._send()
@@ -56,7 +56,7 @@ class SetRawRC:
     def set_throttle_free_mode(self):
         self.aux3 = 1100
         self._send()
-        
+
     def arm_drone(self):
         self.aux4 = 1500
         self._send()
