@@ -50,10 +50,10 @@ class SetAttitude:
                         print(size, code)
                         if size ==6 and code == 108:
                             data = self._connection.recv(6)
-                            temp = struct.unpack('<HHH',data)
+                            temp = struct.unpack('<hhh',data)
                             elapsed = time.time() - start
-                            self.attitude['roll']=float(temp[0]/10.0)
-                            self.attitude['pitch']=float(temp[1]/10.0)
+                            self.attitude['roll']=float(temp[0])
+                            self.attitude['pitch']=float(temp[1])
                             self.attitude['yaw']=float(temp[2])
                             self.attitude['elapsed']=round(elapsed,3)
                             self.attitude['timestamp']="%0.2f" % (time.time(),) 
