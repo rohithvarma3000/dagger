@@ -4,6 +4,6 @@ from dagger.mag_calibration import MagCalibration
 from dagger.raw_imu import RawIMU
 
 
-class PlutoControl(Altitude, AccCalibration, MagCalibration, RawIMU):
+class PlutoSensor(Altitude, AccCalibration, MagCalibration, RawIMU):
     def __init__(self, connection):
         super().__init__(connection=connection)
