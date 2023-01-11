@@ -22,7 +22,7 @@ class RawIMU:
     def __init__(self, connection):
         self._connection = connection
 
-    def get(self):
+    def get_raw_imu(self):
         header = get_header_bytes()
         direction = get_direction_in_bytes()
 
