@@ -12,7 +12,7 @@ class Attitude:
         self._connection = connection
         self.attitude = {}
 
-    def attitude_request(self):
+    def get_attitude(self):
         """Requests the OUT package."""
         header = get_header_bytes()
         direction = get_direction_in_bytes()
@@ -27,12 +27,12 @@ class Attitude:
 
         try:
             start = time.time()
-            status = self.attitude_response(start)
+            status = self.__response(start)
             print(self.attitude)
         except:
             print("Data not recieved.")
 
-    def attitude_response(self, start):
+    def __response(self, start):
         """Recieves the OUT packages."""
         while True:
             header = struct.unpack("c", self._connection.recv(1))[0]

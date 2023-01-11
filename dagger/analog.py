@@ -3,6 +3,15 @@ import time
 from dagger.utils import get_direction_in_bytes, get_header_bytes, calculate_crc, ZERO
 
 
+class AnalogData:
+    def __init__(self, vbat, int_power_meter_sum, rssi, amperage):
+        self.vbat = vbat
+        self.int_power_meter_sum = int_power_meter_sum
+        self.rssi = rssi
+        self.amperage = amperage
+        self.timestamp = time.time()
+
+
 class Analog:
 
     __msg_code = 110
@@ -12,7 +21,7 @@ class Analog:
         self._connection = connection
         self.analog = {}
 
-    def analog_request(self):
+    def get_analog(self):
         """Requests the OUT package."""
         header = get_header_bytes()
         direction = get_direction_in_bytes()
@@ -26,13 +35,12 @@ class Analog:
         self._connection.send(packet)
 
         try:
-            start = time.time()
-            status = self.analog_response(start)
-            print(self.analog)
+            data = self.__response()
+            return data
         except:
             print("Data not recieved.")
 
-    def analog_response(self, start):
+    def __response(self):
         """Recieves the OUT packages."""
         while True:
             header = struct.unpack("c", self._connection.recv(1))[0]
@@ -50,13 +58,11 @@ class Analog:
                         if size == self.__msg_length and code == self.__msg_code:
                             data = self._connection.recv(size)
                             temp = struct.unpack("<BHHH", data)
-                            elapsed = time.time() - start
-                            self.analog["vbat"] = float(temp[0])
-                            self.analog["intPowerMeterSum"] = float(temp[1])
-                            self.analog["rssi"] = float(temp[2])
-                            self.analog["amperage"] = float(temp[3])
-                            self.analog["elapsed"] = round(elapsed, 3)
-                            self.analog["timestamp"] = "%0.2f" % (time.time(),)
+                            vbat = float(temp[0])
+                            int_power_meter_sum = float(temp[1])
+                            rssi = float(temp[2])
+                            amperage = float(temp[3])
+                            data = AnalogData(vbat, int_power_meter_sum, rssi, amperage)
                             break
 
         return True

@@ -3,6 +3,13 @@ import time
 from dagger.utils import get_direction_in_bytes, get_header_bytes, calculate_crc, ZERO
 
 
+class AltitudeData:
+    def __init__(self, altitude, vatio):
+        self.altitude = altitude
+        self.vatio = vatio
+        self.timestamp = time.time()
+
+
 class Altitude:
 
     __msg_code = 109
@@ -10,10 +17,10 @@ class Altitude:
 
     def __init__(self, connection):
         self._connection = connection
-        self.altitude = {}
 
-    def altitude_request(self):
+    def get_altitude(self):
         """Requests the OUT package."""
+        print("start")
         header = get_header_bytes()
         direction = get_direction_in_bytes()
         length_bytes = bytearray(ZERO.to_bytes(1, byteorder="little"))
@@ -23,19 +30,20 @@ class Altitude:
         crc = calculate_crc(message)
         packet = header + direction + message
         packet.append(crc)
+        print(packet)
         self._connection.send(packet)
 
         try:
-            start = time.time()
-            status = self.altitude_response(start)
-            print(self.altitude)
+            data = self.__response()
+            return data
         except:
             print("Data not recieved.")
 
-    def altitude_response(self, start):
+    def __response(self):
         """Recieves the OUT packages."""
         while True:
             header = struct.unpack("c", self._connection.recv(1))[0]
+            print(header)
             if header.decode("utf-8") == "$":
                 print(header.decode("utf-8"))
                 header_m = struct.unpack("c", self._connection.recv(1))[0]
@@ -51,11 +59,7 @@ class Altitude:
                             data = self._connection.recv(6)
                             crc = self._connection.recv(1)
                             temp = struct.unpack("<ih", data)
-                            elapsed = time.time() - start
-                            self.altitude["altitude"] = float(temp[0])
-                            self.altitude["vatio"] = float(temp[1])
-                            self.altitude["elapsed"] = round(elapsed, 3)
-                            self.altitude["timestamp"] = "%0.2f" % (time.time(),)
-                            break
-
-        return True
+                            alt = float(temp[0])
+                            vatio = float(temp[1])
+                            data = AltitudeData(alt, vatio)
+                            return data
