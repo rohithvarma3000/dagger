@@ -21,6 +21,7 @@ class SetCommand:
 
     def command(self, cmd):
         self.cmd = cmd.value
+        print(f"runnning the {cmd}")
         self._send()
 
     def _send(self):

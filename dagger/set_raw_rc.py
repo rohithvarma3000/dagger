@@ -1,5 +1,5 @@
 from dagger.utils import get_header_bytes, get_direction_in_bytes, calculate_crc
-
+import time
 
 class SetRawRC:
     __msg_length = 16
@@ -11,10 +11,9 @@ class SetRawRC:
         self.pitch = 1500  # Pitch command = 0
         self.throttle = 1000  # Roll command = 0
         self.yaw = 1500  # Yaw command = 0
-        self.aux1 = 0  # Headfree Mode
-        self.aux2 = 0  # Developer Mode Off
-        self.aux3 = 0
-        # Altitude Hold Mode
+        self.aux1 = 1500  # Headfree Mode
+        self.aux2 = 1500  # Developer Mode Off
+        self.aux3 = 1500 # Altitude Hold Mode
         self.aux4 = 1000  # DISARM Mode
 
     def set_roll(self, roll):
@@ -59,11 +58,25 @@ class SetRawRC:
 
     def arm_drone(self):
         self.aux4 = 1500
+        self.throttle = 1000
         self._send()
 
+    def box_arm(self):
+        self.roll = 1500  # Roll command = 0
+        self.pitch = 1500  # Pitch command = 0
+        self.throttle = 1500  # Roll command = 0
+        self.yaw = 1500  # Yaw command = 0
+        self.aux4 = 1500
+        self._send()
+        print("box arming")
+        time.sleep(0.5)
+    
     def disarm_drone(self):
         self.aux4 = 1200
+        self.throttle = 1300
         self._send()
+        print("disarming")
+        time.sleep(0.5)
 
     def _send(self):
         header = get_header_bytes()
