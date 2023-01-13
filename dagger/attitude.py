@@ -3,6 +3,14 @@ import time
 from dagger.utils import get_direction_in_bytes, get_header_bytes, calculate_crc, ZERO
 
 
+class AttitudeData:
+    def __init__(self, roll, pitch, yaw):
+        self.roll = roll
+        self.pitch = pitch
+        self.yaw = yaw
+        self.timestamp = time.time()
+
+
 class Attitude:
 
     __msg_code = 108
@@ -12,7 +20,7 @@ class Attitude:
         self._connection = connection
         self.attitude = {}
 
-    def get_attitude(self):
+    def get_attitude_data(self):
         """Requests the OUT package."""
         header = get_header_bytes()
         direction = get_direction_in_bytes()
@@ -26,36 +34,32 @@ class Attitude:
         self._connection.send(packet)
 
         try:
-            start = time.time()
-            status = self.__response(start)
-            print(self.attitude)
+            data = self.__response()
+            return data
         except:
             print("Data not recieved.")
 
-    def __response(self, start):
+    def __response(self):
         """Recieves the OUT packages."""
         while True:
             header = struct.unpack("c", self._connection.recv(1))[0]
             if header.decode("utf-8") == "$":
-                print(header.decode("utf-8"))
                 header_m = struct.unpack("c", self._connection.recv(1))[0]
-                print(header_m)
+
                 if header_m.decode("utf-8") == "M":
                     direction = struct.unpack("c", self._connection.recv(1))[0]
-                    print(direction)
+
                     if direction.decode("utf-8") == ">":
                         size = struct.unpack("B", self._connection.recv(1))[0]
                         code = struct.unpack("B", self._connection.recv(1))[0]
-                        print(size, code)
+
                         if size == 6 and code == 108:
                             data = self._connection.recv(6)
                             temp = struct.unpack("<hhh", data)
-                            elapsed = time.time() - start
-                            self.attitude["roll"] = float(temp[0])
-                            self.attitude["pitch"] = float(temp[1])
-                            self.attitude["yaw"] = float(temp[2])
-                            self.attitude["elapsed"] = round(elapsed, 3)
-                            self.attitude["timestamp"] = "%0.2f" % (time.time(),)
-                            break
 
-        return True
+                            roll = temp[0]
+                            pitch = temp[1]
+                            yaw = temp[2]
+
+                            attitude_data = AttitudeData(roll, pitch, yaw)
+                            return attitude_data

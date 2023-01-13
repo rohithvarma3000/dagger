@@ -9,7 +9,7 @@ class MagCalibration:
         self._connection = connection
         self.cmd = 0
 
-    def acc_calibartion(self):
+    def mag_calibartion(self):
         header = get_header_bytes()
         direction = get_direction_in_bytes()
         length_bytes = bytearray(

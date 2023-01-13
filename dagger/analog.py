@@ -21,7 +21,7 @@ class Analog:
         self._connection = connection
         self.analog = {}
 
-    def get_analog(self):
+    def get_analog_data(self):
         """Requests the OUT package."""
         header = get_header_bytes()
         direction = get_direction_in_bytes()
@@ -45,24 +45,25 @@ class Analog:
         while True:
             header = struct.unpack("c", self._connection.recv(1))[0]
             if header.decode("utf-8") == "$":
-                print(header.decode("utf-8"))
                 header_m = struct.unpack("c", self._connection.recv(1))[0]
-                print(header_m)
+
                 if header_m.decode("utf-8") == "M":
                     direction = struct.unpack("c", self._connection.recv(1))[0]
-                    print(direction)
+
                     if direction.decode("utf-8") == ">":
                         size = struct.unpack("B", self._connection.recv(1))[0]
                         code = struct.unpack("B", self._connection.recv(1))[0]
-                        print(size, code)
+
                         if size == self.__msg_length and code == self.__msg_code:
                             data = self._connection.recv(size)
                             temp = struct.unpack("<BHHH", data)
+
                             vbat = float(temp[0])
                             int_power_meter_sum = float(temp[1])
                             rssi = float(temp[2])
                             amperage = float(temp[3])
-                            data = AnalogData(vbat, int_power_meter_sum, rssi, amperage)
-                            break
 
-        return True
+                            analog_data = AnalogData(
+                                vbat, int_power_meter_sum, rssi, amperage
+                            )
+                            return analog_data

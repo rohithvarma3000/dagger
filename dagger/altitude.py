@@ -18,9 +18,8 @@ class Altitude:
     def __init__(self, connection):
         self._connection = connection
 
-    def get_altitude(self):
+    def get_altitude_data(self):
         """Requests the OUT package."""
-        print("start")
         header = get_header_bytes()
         direction = get_direction_in_bytes()
         length_bytes = bytearray(ZERO.to_bytes(1, byteorder="little"))
@@ -30,7 +29,6 @@ class Altitude:
         crc = calculate_crc(message)
         packet = header + direction + message
         packet.append(crc)
-        print(packet)
         self._connection.send(packet)
 
         try:
@@ -43,23 +41,23 @@ class Altitude:
         """Recieves the OUT packages."""
         while True:
             header = struct.unpack("c", self._connection.recv(1))[0]
-            print(header)
             if header.decode("utf-8") == "$":
-                print(header.decode("utf-8"))
                 header_m = struct.unpack("c", self._connection.recv(1))[0]
-                print(header_m)
+
                 if header_m.decode("utf-8") == "M":
                     direction = struct.unpack("c", self._connection.recv(1))[0]
-                    print(direction)
+
                     if direction.decode("utf-8") == ">":
                         size = struct.unpack("B", self._connection.recv(1))[0]
                         code = struct.unpack("B", self._connection.recv(1))[0]
-                        print(size, code)
+
                         if size == self.__msg_length and code == self.__msg_code:
                             data = self._connection.recv(6)
                             crc = self._connection.recv(1)
                             temp = struct.unpack("<ih", data)
-                            alt = float(temp[0])
-                            vatio = float(temp[1])
-                            data = AltitudeData(alt, vatio)
-                            return data
+
+                            alt = temp[0] / 100
+                            vatio = temp[1]
+
+                            alt_data = AltitudeData(alt, vatio)
+                            return alt_data
