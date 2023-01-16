@@ -1,9 +1,26 @@
+"""Get the Attitude data from Pluto."""
 import struct
 import time
 from dagger.utils import get_direction_in_bytes, get_header_bytes, calculate_crc, ZERO
 
 
 class AttitudeData:
+    """Formats the roll, pitch and yaw values.
+
+    Attributes
+    ----------
+    roll : int
+        Roll values of pluto in the ``Decidegree`` Units.
+    pitch : int
+        pitch values of pluto in the ``Decidegree`` Units.
+    yaw : int
+        yaw values of pluto in the ``Degree`` Units.
+    timstamp : float
+        Roll values of pluto in the ``seconds`` Units.
+    Example
+    -------
+    >>> AttitudeData.roll
+    """
     def __init__(self, roll, pitch, yaw):
         self.roll = roll
         self.pitch = pitch
@@ -12,6 +29,19 @@ class AttitudeData:
 
 
 class Attitude:
+    """Get the Attitude data from Pluto.
+
+    Parameters
+    ----------
+    connection : PlutoConnection
+        Pluto connection object for communicating with ``Pluto``.
+
+    Examples
+    --------
+    >>> t = dagger.PlutoConnection()
+    >>> t.connect(('Pluto_IP', Pluto_port))
+    >>> attitude = dagger.Attitude(t)
+    """
 
     __msg_code = 108
     __msg_length = 6
@@ -21,7 +51,19 @@ class Attitude:
         self.attitude = {}
 
     def get_attitude_data(self):
-        """Requests the OUT package."""
+        """Get the Attitude OUT package from pluto.
+
+        Returns
+        -------
+        AttitudeData
+            The roll, pitch, yaw and timestamp values.
+
+        Examples
+        --------
+        >>> data = attitude.get_attitude_data()
+        >>> data.roll
+        """
+        # sending the request to the pluto.
         header = get_header_bytes()
         direction = get_direction_in_bytes()
         length_bytes = bytearray(ZERO.to_bytes(1, byteorder="little"))
@@ -33,6 +75,7 @@ class Attitude:
         packet.append(crc)
         self._connection.send(packet)
 
+        # recieving the attitude OUT package.
         try:
             data = self.__response()
             return data
