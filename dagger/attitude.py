@@ -57,9 +57,11 @@ class Attitude:
                             data = self._connection.recv(6)
                             temp = struct.unpack("<hhh", data)
 
-                            roll = temp[0]
-                            pitch = temp[1]
-                            yaw = temp[2]
-
-                            attitude_data = AttitudeData(roll, pitch, yaw)
+                            if temp:
+                                roll = temp[0]
+                                pitch = temp[1]
+                                yaw = temp[2]
+                                attitude_data = AttitudeData(roll, pitch, yaw)
+                            else:
+                                attitude_data = AttitudeData(None, None, None)
                             return attitude_data

@@ -56,8 +56,11 @@ class Altitude:
                             crc = self._connection.recv(1)
                             temp = struct.unpack("<ih", data)
 
-                            alt = temp[0] / 100
-                            vatio = temp[1]
+                            if temp:
+                                alt = temp[0]
+                                vatio = temp[1]
+                                alt_data = AltitudeData(alt, vatio)
 
-                            alt_data = AltitudeData(alt, vatio)
+                            else:
+                                alt_data = AltitudeData(None, None)
                             return alt_data
