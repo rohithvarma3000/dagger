@@ -34,17 +34,50 @@ class RawIMU:
         packet.append(crc)
         self._connection.send(packet)
 
-        data = self._connection.recv(RawIMU.__msg_length + 6)
-        struct_data = struct.unpack("cccBB<H<H<H<H<H<H<H<H<HB")
-        obj = RawIMUData(
-            struct_data[6],
-            struct_data[7],
-            struct_data[8],
-            struct_data[9],
-            struct_data[10],
-            struct_data[11],
-            struct_data[12],
-            struct_data[13],
-            struct_data[14],
-        )
-        return obj
+        try:
+            data = self.__response()
+            return data
+        except:
+            print("Data not recieved.")
+
+    def __response(self):
+        """Recieves the OUT packages."""
+        while True:
+            header = struct.unpack("c", self._connection.recv(1))[0]
+            if header.decode("utf-8") == "$":
+                header_m = struct.unpack("c", self._connection.recv(1))[0]
+
+                if header_m.decode("utf-8") == "M":
+                    direction = struct.unpack("c", self._connection.recv(1))[0]
+
+                    if direction.decode("utf-8") == ">":
+                        size = struct.unpack("B", self._connection.recv(1))[0]
+                        code = struct.unpack("B", self._connection.recv(1))[0]
+
+                        if size == self.__msg_length and code == self.__msg_code:
+                            data = self._connection.recv(6)
+                            crc = self._connection.recv(1)
+                            temp = struct.unpack("<hhhhhhhhh", data)
+
+                            acc_x = temp[0]
+                            acc_y = temp[1]
+                            acc_z = temp[2]
+                            gyro_x = temp[0]
+                            gyro_y = temp[1]
+                            gyro_z = temp[2]
+                            mag_x = temp[0]
+                            mag_y = temp[1]
+                            mag_z = temp[2]
+
+                            imu_data = RawIMUData(
+                                acc_x,
+                                acc_y,
+                                acc_z,
+                                gyro_x,
+                                gyro_y,
+                                gyro_z,
+                                mag_x,
+                                mag_y,
+                                mag_z,
+                            )
+                            return imu_data
