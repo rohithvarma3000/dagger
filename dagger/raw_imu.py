@@ -1,8 +1,37 @@
+"""Get the RawIMU data from Pluto."""
 import struct
 from dagger.utils import get_header_bytes, get_direction_in_bytes, calculate_crc, ZERO
 
 
 class RawIMUData:
+    """Formats the RawIMU values.
+
+    Attributes
+    ----------
+    acc_x : int
+        x-values of Pluto accelerometer.
+    acc_y : int
+        y-values of Pluto accelerometer.
+    acc_z : int
+        z-values of Pluto accelerometer.
+    gyro_x : int
+        x-values of Pluto gyroscope.
+    gyro_y : int
+        y-values of Pluto gyroscope.
+    gyro_z : int
+        z-values of Pluto gyroscope.
+    mag_x : int
+        x-values of Pluto magnetometer.
+    mag_y : int
+        y-values of Pluto magnetometer.
+    mag_z : int
+        z-values of Pluto magnetometer.
+    timstamp : float
+        timestamp values of pluto in the ``seconds`` Units.
+    Example
+    -------
+    >>> RawIMUdata.acc_x
+    """
     def __init(self, acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z, mag_x, mag_y, mag_z):
         self.acc_x = acc_x
         self.acc_y = acc_y
@@ -16,6 +45,19 @@ class RawIMUData:
 
 
 class RawIMU:
+    """Get the RawIMU data from Pluto.
+
+    Parameters
+    ----------
+    connection : PlutoConnection
+        Pluto connection object for communicating with ``Pluto``.
+
+    Examples
+    --------
+    >>> t = dagger.PlutoConnection()
+    >>> t.connect(('Pluto_IP', Pluto_port))
+    >>> rawimu = dagger.RawIMU(t)
+    """
     __msg_length = 18
     __msg_code = 102
 
@@ -23,6 +65,18 @@ class RawIMU:
         self._connection = connection
 
     def get_raw_imu(self):
+        """Get the RawIMU OUT package from pluto.
+
+        Returns
+        -------
+        RawIMUData
+            The x,y,z values of accelerometer,gyroscope and magnetometer and the timestamp value.
+
+        Examples
+        --------
+        >>> data = rawimu.get_raw_imu()
+        >>> data.acc_x
+        """
         header = get_header_bytes()
         direction = get_direction_in_bytes()
 
