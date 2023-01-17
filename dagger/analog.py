@@ -1,9 +1,29 @@
+"""Get the Analog data from Pluto."""
 import struct
 import time
 from dagger.utils import get_direction_in_bytes, get_header_bytes, calculate_crc, ZERO
 
 
 class AnalogData:
+    """Formats the Battery Voltage, Power Meter, RSSI and Amperage values.
+
+    Attributes
+    ----------
+    vbat : int
+        Battery Voltage values of pluto in the ``1/10 Volts`` Units.
+    int_power_meter_sum : int
+        Power Meter values of pluto.
+    rssi : int
+        RSSI values of pluto.
+    amperage : int
+        Amperage values of pluto.
+    timstamp : float
+        timestamp values of pluto in the ``seconds`` Units.
+    Example
+    -------
+    >>> AnalogData.vbat
+    """
+
     def __init__(self, vbat, int_power_meter_sum, rssi, amperage):
         self.vbat = vbat
         self.int_power_meter_sum = int_power_meter_sum
@@ -13,6 +33,19 @@ class AnalogData:
 
 
 class Analog:
+    """Get the Analog data from Pluto.
+
+    Parameters
+    ----------
+    connection : PlutoConnection
+        Pluto connection object for communicating with ``Pluto``.
+
+    Examples
+    --------
+    >>> t = dagger.PlutoConnection()
+    >>> t.connect(('Pluto_IP', Pluto_port))
+    >>> analog = dagger.Analog(t)
+    """
 
     __msg_code = 110
     __msg_length = 7
@@ -22,7 +55,18 @@ class Analog:
         self.analog = {}
 
     def get_analog_data(self):
-        """Requests the OUT package."""
+        """Get the Analog OUT package from pluto.
+
+        Returns
+        -------
+        AnalogData
+            The vbat, int_power_meter_sum, rssi, amperage and timestamp values.
+
+        Examples
+        --------
+        >>> data = analog.get_analog_data()
+        >>> data.vbat
+        """
         header = get_header_bytes()
         direction = get_direction_in_bytes()
         length_bytes = bytearray(ZERO.to_bytes(1, byteorder="little"))
@@ -63,7 +107,6 @@ class Analog:
                             rssi = float(temp[2])
                             amperage = float(temp[3])
 
-                            analog_data = AnalogData(
-                                vbat, int_power_meter_sum, rssi, amperage
-                            )
+                            analog_data = AnalogData(vbat, int_power_meter_sum, rssi,
+                                                     amperage)
                             return analog_data

@@ -7,5 +7,6 @@ from dagger.attitude import Attitude
 
 
 class PlutoSensor(Altitude, AccCalibration, MagCalibration, RawIMU, Analog, Attitude):
+
     def __init__(self, connection):
         super().__init__(connection=connection)

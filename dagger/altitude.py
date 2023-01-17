@@ -1,9 +1,25 @@
+"""Get the Altitude data from Pluto."""
 import struct
 import time
 from dagger.utils import get_direction_in_bytes, get_header_bytes, calculate_crc, ZERO
 
 
 class AltitudeData:
+    """Formats the altitude and vatio values.
+
+    Attributes
+    ----------
+    altitude : int
+        Altitude values of Pluto in the ``Centimetre`` Units.
+    vatio : int
+        vatio values of pluto in the ``Centimetre per Second`` Units.
+    timstamp : float
+        timestamp values of pluto in the ``seconds`` Units.
+    Example
+    -------
+    >>> AltitudeData.altitude
+    """
+
     def __init__(self, altitude, vatio):
         self.altitude = altitude
         self.vatio = vatio
@@ -11,7 +27,19 @@ class AltitudeData:
 
 
 class Altitude:
+    """Get the Altitude data from Pluto.
 
+    Parameters
+    ----------
+    connection : PlutoConnection
+        Pluto connection object for communicating with ``Pluto``.
+
+    Examples
+    --------
+    >>> t = dagger.PlutoConnection()
+    >>> t.connect(('Pluto_IP', Pluto_port))
+    >>> altitude = dagger.Altitude(t)
+    """
     __msg_code = 109
     __msg_length = 6
 
@@ -19,7 +47,19 @@ class Altitude:
         self._connection = connection
 
     def get_altitude_data(self):
-        """Requests the OUT package."""
+        """Get the Altitude OUT package from pluto.
+
+        Returns
+        -------
+        AltitudeData
+            The altitude, vatio and timestamp values.
+
+        Examples
+        --------
+        >>> data = altitude.get_altitude_data()
+        >>> data.altitude
+        """
+
         header = get_header_bytes()
         direction = get_direction_in_bytes()
         length_bytes = bytearray(ZERO.to_bytes(1, byteorder="little"))
