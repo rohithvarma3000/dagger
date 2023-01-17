@@ -38,11 +38,9 @@ class AccCalibration:
         header = get_header_bytes()
         direction = get_direction_in_bytes()
         length_bytes = bytearray(
-            AccCalibration.__msg_length.to_bytes(1, byteorder="little")
-        )
+            AccCalibration.__msg_length.to_bytes(1, byteorder="little"))
         code_bytes = bytearray(
-            AccCalibration.__msg_code.to_bytes(1, byteorder="little")
-        )
+            AccCalibration.__msg_code.to_bytes(1, byteorder="little"))
 
         message = length_bytes + code_bytes
         crc = calculate_crc(message)

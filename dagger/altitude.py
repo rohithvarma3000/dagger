@@ -19,6 +19,7 @@ class AltitudeData:
     -------
     >>> AltitudeData.altitude
     """
+
     def __init__(self, altitude, vatio):
         self.altitude = altitude
         self.vatio = vatio

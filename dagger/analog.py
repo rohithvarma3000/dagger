@@ -23,6 +23,7 @@ class AnalogData:
     -------
     >>> AnalogData.vbat
     """
+
     def __init__(self, vbat, int_power_meter_sum, rssi, amperage):
         self.vbat = vbat
         self.int_power_meter_sum = int_power_meter_sum
@@ -106,7 +107,6 @@ class Analog:
                             rssi = float(temp[2])
                             amperage = float(temp[3])
 
-                            analog_data = AnalogData(
-                                vbat, int_power_meter_sum, rssi, amperage
-                            )
+                            analog_data = AnalogData(vbat, int_power_meter_sum, rssi,
+                                                     amperage)
                             return analog_data

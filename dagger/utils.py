@@ -34,7 +34,7 @@ def send_out(con, code):
     ----------
     con : PlutoConnection
         Pluto connection object for communicating with ``Pluto``.
-    
+
     code : int
         MSP packet code for the corresponding out packet.
     """

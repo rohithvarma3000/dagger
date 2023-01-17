@@ -2,6 +2,7 @@
 from dagger.utils import get_header_bytes, get_direction_in_bytes, calculate_crc
 import time
 
+
 class SetRawRC:
     """Controls the pluto using RC params.
 
@@ -27,12 +28,12 @@ class SetRawRC:
         self.yaw = 1500  # Yaw command = 0
         self.aux1 = 1500  # Headfree Mode
         self.aux2 = 1500  # Developer Mode Off
-        self.aux3 = 1500 # Altitude Hold Mode
+        self.aux3 = 1500  # Altitude Hold Mode
         self.aux4 = 1000  # DISARM Mode
 
     def set_roll(self, roll):
         """Sets the roll values in pluto
-        
+
         Parameters
         ----------
         roll : int [900,2100]
@@ -47,7 +48,7 @@ class SetRawRC:
 
     def set_pitch(self, pitch):
         """Sets the pitch values in pluto
-        
+
         Parameters
         ----------
         pitch : int [900,2100]
@@ -62,7 +63,7 @@ class SetRawRC:
 
     def set_throttle(self, throttle):
         """Sets the throttle values in pluto
-        
+
         Parameters
         ----------
         throttle : int [900,2100]
@@ -77,7 +78,7 @@ class SetRawRC:
 
     def set_yaw(self, yaw):
         """Sets the yaw values in pluto
-        
+
         Parameters
         ----------
         yaw : int [900,2100]
@@ -176,7 +177,7 @@ class SetRawRC:
         self._send()
         print("box arming")
         time.sleep(0.5)
-    
+
     def disarm_drone(self):
         """Disarms the drone
 
@@ -208,16 +209,8 @@ class SetRawRC:
         aux3_bytes = bytearray(self.aux3.to_bytes(2, byteorder="little"))
         aux4_bytes = bytearray(self.aux4.to_bytes(2, byteorder="little"))
 
-        payload = (
-            roll_bytes
-            + pitch_bytes
-            + throttle_bytes
-            + yaw_bytes
-            + aux1_bytes
-            + aux2_bytes
-            + aux3_bytes
-            + aux4_bytes
-        )
+        payload = (roll_bytes + pitch_bytes + throttle_bytes + yaw_bytes + aux1_bytes +
+                   aux2_bytes + aux3_bytes + aux4_bytes)
 
         message = length_bytes + code_bytes + payload
         crc = calculate_crc(message)

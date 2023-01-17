@@ -32,6 +32,7 @@ class RawIMUData:
     -------
     >>> RawIMUdata.acc_x
     """
+
     def __init(self, acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z, mag_x, mag_y, mag_z):
         self.acc_x = acc_x
         self.acc_y = acc_y

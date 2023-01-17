@@ -21,6 +21,7 @@ class AttitudeData:
     -------
     >>> AttitudeData.roll
     """
+
     def __init__(self, roll, pitch, yaw):
         self.roll = roll
         self.pitch = pitch

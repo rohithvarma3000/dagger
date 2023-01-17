@@ -56,9 +56,7 @@ class SetCommand:
         """Sends the Command Packet"""
         header = get_header_bytes()
         direction = get_direction_in_bytes()
-        length_bytes = bytearray(
-            SetCommand.__msg_length.to_bytes(1, byteorder="little")
-        )
+        length_bytes = bytearray(SetCommand.__msg_length.to_bytes(1, byteorder="little"))
         code_bytes = bytearray(SetCommand.__msg_code.to_bytes(1, byteorder="little"))
         payload = bytearray(self.cmd.to_bytes(2, byteorder="little"))
 
