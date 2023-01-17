@@ -16,7 +16,7 @@ class AttitudeData:
     yaw : int
         yaw values of pluto in the ``Degree`` Units.
     timstamp : float
-        Roll values of pluto in the ``seconds`` Units.
+        timestamp values of pluto in the ``seconds`` Units.
     Example
     -------
     >>> AttitudeData.roll
