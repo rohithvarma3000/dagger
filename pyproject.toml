@@ -10,7 +10,7 @@ version_scheme = "no-guess-dev"
 
 [project]
 name = "pluto-dagger"
-version = "0.0.1"
+version = "0.1.1"
 authors = [
     {name = 'Nagesh Bansal', email = 'nageshbansal59@gmail.com'},
     {name='Rohith Varma Buddaraju', email = 'rohith.varma.buddaraju@gmail.com'},
