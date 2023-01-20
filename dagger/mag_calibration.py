@@ -17,6 +17,7 @@ class MagCalibration:
     >>> mag_cal = dagger.MagCalibration(t)
 
     """
+
     __msg_length = 0
     __msg_code = 206
 
@@ -38,9 +39,11 @@ class MagCalibration:
         header = get_header_bytes()
         direction = get_direction_in_bytes()
         length_bytes = bytearray(
-            MagCalibration.__msg_length.to_bytes(1, byteorder="little"))
+            MagCalibration.__msg_length.to_bytes(1, byteorder="little")
+        )
         code_bytes = bytearray(
-            MagCalibration.__msg_code.to_bytes(1, byteorder="little"))
+            MagCalibration.__msg_code.to_bytes(1, byteorder="little")
+        )
 
         message = length_bytes + code_bytes
         crc = calculate_crc(message)

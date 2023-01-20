@@ -40,6 +40,7 @@ class Altitude:
     >>> t.connect(('Pluto_IP', Pluto_port))
     >>> altitude = dagger.Altitude(t)
     """
+
     __msg_code = 109
     __msg_length = 6
 
