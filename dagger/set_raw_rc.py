@@ -119,7 +119,7 @@ class SetRawRC:
         --------
         >>> rc.set_developer_mode_off()
         """
-        self.aux2 = 1500
+        self.aux2 = 1100
         self._send()
 
     def set_developer_mode_on(self):
@@ -129,7 +129,7 @@ class SetRawRC:
         --------
         >>> rc.set_developer_mode_on()
         """
-        self.aux2 = 1100
+        self.aux2 = 1500
         self._send()
 
     def set_alt_hold_mode(self):

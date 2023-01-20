@@ -1,5 +1,6 @@
 import dagger.utils as util
 import random
+from unittest.mock import Mock
 
 
 def test_get_header_bytes():
@@ -28,3 +29,19 @@ def test_calculate_crc():
     bytes_nums = bytearray(test_nums)
     func_crc = util.calculate_crc(bytes_nums)
     assert func_crc == check_crc
+
+
+def test_send_out():
+    connection = Mock()
+
+    util.send_out(connection, 205)
+    packet = connection.send.call_args.args[0]
+    assert chr(packet[0]) == "$"
+    assert chr(packet[1]) == "M"
+    assert chr(packet[2]) == "<"
+    assert packet[3] == 0
+    assert packet[4] == 205
+
+    util.send_out(connection, 206)
+    packet = connection.send.call_args.args[0]
+    assert packet[4] == 206
