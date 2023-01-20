@@ -17,6 +17,7 @@ class SetRawRC:
     >>> t.connect(('Pluto_IP', Pluto_port))
     >>> rc = dagger.SetRawRC(t)
     """
+
     __msg_length = 16
     __msg_code = 200
 
@@ -175,8 +176,6 @@ class SetRawRC:
         self.yaw = 1500  # Yaw command = 0
         self.aux4 = 1500
         self._send()
-        print("box arming")
-        time.sleep(0.5)
 
     def disarm_drone(self):
         """Disarms the drone
@@ -188,8 +187,6 @@ class SetRawRC:
         self.aux4 = 1200
         self.throttle = 1300
         self._send()
-        print("disarming")
-        time.sleep(0.5)
 
     def _send(self):
         """Sends the RC Packet"""
@@ -209,8 +206,16 @@ class SetRawRC:
         aux3_bytes = bytearray(self.aux3.to_bytes(2, byteorder="little"))
         aux4_bytes = bytearray(self.aux4.to_bytes(2, byteorder="little"))
 
-        payload = (roll_bytes + pitch_bytes + throttle_bytes + yaw_bytes + aux1_bytes +
-                   aux2_bytes + aux3_bytes + aux4_bytes)
+        payload = (
+            roll_bytes
+            + pitch_bytes
+            + throttle_bytes
+            + yaw_bytes
+            + aux1_bytes
+            + aux2_bytes
+            + aux3_bytes
+            + aux4_bytes
+        )
 
         message = length_bytes + code_bytes + payload
         crc = calculate_crc(message)
