@@ -23,6 +23,7 @@ class AttitudeData:
     """
 
     def __init__(self, roll, pitch, yaw):
+        """Defines the class variable."""
         self.roll = roll
         self.pitch = pitch
         self.yaw = yaw
@@ -48,6 +49,7 @@ class Attitude:
     __msg_length = 6
 
     def __init__(self, connection):
+        """Defines the class variable."""
         self._connection = connection
         self.attitude = {}
 

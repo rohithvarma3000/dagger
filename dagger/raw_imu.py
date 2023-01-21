@@ -71,7 +71,8 @@ class RawIMU:
         Returns
         -------
         RawIMUData
-            The x,y,z values of accelerometer,gyroscope and magnetometer and the timestamp value.
+            The x,y,z values of accelerometer,gyroscope and magnetometer and the
+            timestamp value.
 
         Examples
         --------

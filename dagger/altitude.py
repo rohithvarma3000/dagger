@@ -21,6 +21,7 @@ class AltitudeData:
     """
 
     def __init__(self, altitude, vatio):
+        """Defines the class variables."""
         self.altitude = altitude
         self.vatio = vatio
         self.timestamp = time.time()
@@ -45,6 +46,7 @@ class Altitude:
     __msg_length = 6
 
     def __init__(self, connection):
+        """Defines the class variable."""
         self._connection = connection
 
     def get_altitude_data(self):
