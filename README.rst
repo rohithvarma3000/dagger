@@ -1,49 +1,44 @@
-.. These are examples of badges you might want to add to your README:
-   please update the URLs accordingly
-
-    .. image:: https://api.cirrus-ci.com/github/<USER>/dagger.svg?branch=main
-        :alt: Built Status
-        :target: https://cirrus-ci.com/github/<USER>/dagger
-    .. image:: https://readthedocs.org/projects/dagger/badge/?version=latest
-        :alt: ReadTheDocs
-        :target: https://dagger.readthedocs.io/en/stable/
-    .. image:: https://img.shields.io/coveralls/github/<USER>/dagger/main.svg
-        :alt: Coveralls
-        :target: https://coveralls.io/r/<USER>/dagger
-    .. image:: https://img.shields.io/pypi/v/dagger.svg
-        :alt: PyPI-Server
-        :target: https://pypi.org/project/dagger/
-    .. image:: https://img.shields.io/conda/vn/conda-forge/dagger.svg
-        :alt: Conda-Forge
-        :target: https://anaconda.org/conda-forge/dagger
-    .. image:: https://pepy.tech/badge/dagger/month
-        :alt: Monthly Downloads
-        :target: https://pepy.tech/project/dagger
-    .. image:: https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter
-        :alt: Twitter
-        :target: https://twitter.com/dagger
-
-.. image:: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
-    :alt: Project generated with PyScaffold
-    :target: https://pyscaffold.org/
-
-|
-
-======
+=======================================
 dagger
-======
+=======================================
+
+.. image:: https://github.com/rohithvarma3000/dagger/actions/workflows/python-package.yml/badge.svg
+   :target: https://github.com/rohithvarma3000/dagger/actions/workflows/python-package.yml
+   :alt: Python package
+.. image:: https://readthedocs.org/projects/dagger/badge/?version=latest
+   :target: https://dagger.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+.. image:: https://codecov.io/gh/rohithvarma3000/dagger/branch/main/graph/badge.svg?token=VtrYdLrEMV
+   :target: https://codecov.io/gh/rohithvarma3000/dagger
+.. image:: http://img.shields.io/badge/license-MIT-blue.svg
+   :target: https://raw.githubusercontent.com/rohithvarma3000/dagger/main/LICENSE
+   :alt: License
 
 
-    Add a short description here!
+Installing the Current Release
+------------------------------
+
+If you have Python installed you can install the current release using either pip: ::
+
+   pip install pluto-dagger
 
 
-A longer description of your project goes here...
+Installing the package from source
+----------------------------------
+
+1. Get the latest source by cloning this repo: ::
+
+      git clone https://github.com/rohithvarma3000/dagger.git
+
+2. Install the dependencies: ::
+
+      pip install -r requirements.txt
+
+3. Install dagger: ::
+
+      pip install .
 
 
-.. _pyscaffold-notes:
+.. _dagger : https://github.com/rohithvarma3000/neonVegWrangleR
 
-Note
-====
 
-This project has been set up using PyScaffold 4.3.1. For details and usage
-information on PyScaffold see https://pyscaffold.org/.
