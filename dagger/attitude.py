@@ -5,7 +5,6 @@ from dagger.utils import get_direction_in_bytes, get_header_bytes, calculate_crc
 
 
 class AttitudeData:
-
     """Formats the roll, pitch and yaw values.
 
     Attributes
@@ -32,7 +31,6 @@ class AttitudeData:
 
 
 class Attitude:
-
     """Get the Attitude data from Pluto.
 
     Parameters

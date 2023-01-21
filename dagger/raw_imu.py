@@ -4,7 +4,6 @@ from dagger.utils import get_header_bytes, get_direction_in_bytes, calculate_crc
 
 
 class RawIMUData:
-
     """Formats the RawIMU values.
 
     Attributes

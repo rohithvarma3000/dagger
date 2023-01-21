@@ -5,7 +5,6 @@ from dagger.utils import get_direction_in_bytes, get_header_bytes, calculate_crc
 
 
 class AltitudeData:
-
     """Formats the altitude and vatio values.
 
     Attributes
@@ -29,7 +28,6 @@ class AltitudeData:
 
 
 class Altitude:
-
     """Get the Altitude data from Pluto.
 
     Parameters

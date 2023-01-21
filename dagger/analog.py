@@ -5,7 +5,6 @@ from dagger.utils import get_direction_in_bytes, get_header_bytes, calculate_crc
 
 
 class AnalogData:
-
     """Formats the Battery Voltage, Power Meter, RSSI and Amperage values.
 
     Attributes
@@ -35,7 +34,6 @@ class AnalogData:
 
 
 class Analog:
-
     """Get the Analog data from Pluto.
 
     Parameters

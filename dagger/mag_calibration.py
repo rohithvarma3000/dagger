@@ -3,7 +3,6 @@ from dagger.utils import get_header_bytes, get_direction_in_bytes, calculate_crc
 
 
 class MagCalibration:
-    
     """Calibrates the magnetometer..
 
     Parameters
