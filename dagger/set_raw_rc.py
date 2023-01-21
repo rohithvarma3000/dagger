@@ -206,16 +206,8 @@ class SetRawRC:
         aux3_bytes = bytearray(self.aux3.to_bytes(2, byteorder="little"))
         aux4_bytes = bytearray(self.aux4.to_bytes(2, byteorder="little"))
 
-        payload = (
-            roll_bytes
-            + pitch_bytes
-            + throttle_bytes
-            + yaw_bytes
-            + aux1_bytes
-            + aux2_bytes
-            + aux3_bytes
-            + aux4_bytes
-        )
+        payload = (roll_bytes + pitch_bytes + throttle_bytes + yaw_bytes + aux1_bytes +
+                   aux2_bytes + aux3_bytes + aux4_bytes)
 
         message = length_bytes + code_bytes + payload
         crc = calculate_crc(message)
