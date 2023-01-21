@@ -4,6 +4,7 @@ from dagger.utils import get_header_bytes, get_direction_in_bytes, calculate_crc
 
 
 class RawIMUData:
+
     """Formats the RawIMU values.
 
     Attributes
@@ -71,7 +72,8 @@ class RawIMU:
         Returns
         -------
         RawIMUData
-            The x,y,z values of accelerometer,gyroscope and magnetometer and the timestamp value.
+            The x,y,z values of accelerometer,gyroscope and magnetometer and the
+            timestamp value.
 
         Examples
         --------
