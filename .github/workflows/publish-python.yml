@@ -30,7 +30,7 @@ jobs:
         .
 
     - name: Publish distribution 📦 to Test PyPI
-      # if: github.event_name == 'pull_request'
+      if: github.event_name == 'pull_request'
       uses: pypa/gh-action-pypi-publish@master
       with:
         password: ${{ secrets.TEST_PYPI }}
