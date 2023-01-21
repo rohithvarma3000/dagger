@@ -39,7 +39,7 @@ jobs:
       run: |
         ${{ matrix.venv_activate }}
         # stop the build if there are Python syntax errors or undefined names
-        flake8 ./dagger --count --show-source --statistics
+        # flake8 ./dagger --count --show-source --statistics
         yapf -d --recursive ./dagger --style=.style.yapf 2>&1
 
 

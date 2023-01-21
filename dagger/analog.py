@@ -5,6 +5,7 @@ from dagger.utils import get_direction_in_bytes, get_header_bytes, calculate_crc
 
 
 class AnalogData:
+
     """Formats the Battery Voltage, Power Meter, RSSI and Amperage values.
 
     Attributes
@@ -25,6 +26,7 @@ class AnalogData:
     """
 
     def __init__(self, vbat, int_power_meter_sum, rssi, amperage):
+        """Defines the class variables."""
         self.vbat = vbat
         self.int_power_meter_sum = int_power_meter_sum
         self.rssi = rssi
@@ -33,6 +35,7 @@ class AnalogData:
 
 
 class Analog:
+
     """Get the Analog data from Pluto.
 
     Parameters
@@ -51,6 +54,7 @@ class Analog:
     __msg_length = 7
 
     def __init__(self, connection):
+        """Defines the class variable."""
         self._connection = connection
         self.analog = {}
 

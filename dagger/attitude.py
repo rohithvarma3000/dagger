@@ -5,6 +5,7 @@ from dagger.utils import get_direction_in_bytes, get_header_bytes, calculate_crc
 
 
 class AttitudeData:
+
     """Formats the roll, pitch and yaw values.
 
     Attributes
@@ -23,6 +24,7 @@ class AttitudeData:
     """
 
     def __init__(self, roll, pitch, yaw):
+        """Defines the class variable."""
         self.roll = roll
         self.pitch = pitch
         self.yaw = yaw
@@ -30,6 +32,7 @@ class AttitudeData:
 
 
 class Attitude:
+
     """Get the Attitude data from Pluto.
 
     Parameters
@@ -48,6 +51,7 @@ class Attitude:
     __msg_length = 6
 
     def __init__(self, connection):
+        """Defines the class variable."""
         self._connection = connection
         self.attitude = {}
 

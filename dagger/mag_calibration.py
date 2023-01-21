@@ -3,6 +3,7 @@ from dagger.utils import get_header_bytes, get_direction_in_bytes, calculate_crc
 
 
 class MagCalibration:
+    
     """Calibrates the magnetometer..
 
     Parameters
@@ -22,6 +23,7 @@ class MagCalibration:
     __msg_code = 206
 
     def __init__(self, connection):
+        """Defines the class variable."""
         self._connection = connection
         self.cmd = 0
 
