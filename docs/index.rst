@@ -10,8 +10,9 @@ Contents
    :maxdepth: 2
 
    Overview <readme>
-   Quick start <introduction>
+   Quickstart <introduction>
    API Reference <api/modules>
+   Working Principles <principles>
    Contributions & Help <contributing>
    License <license>
    Authors <authors>
