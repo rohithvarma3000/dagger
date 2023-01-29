@@ -15,6 +15,8 @@ dagger
    :alt: License
 
 
+**A Python implementation for controlling Pluto Drone.**
+
 Installing the Current Release
 ------------------------------
 
