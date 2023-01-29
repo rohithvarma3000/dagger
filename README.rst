@@ -17,6 +17,9 @@ dagger
 
 **A Python implementation for controlling Pluto Drone.**
 
+Installation
+============
+
 Installing the Current Release
 ------------------------------
 
@@ -39,6 +42,39 @@ Installing the package from source
 3. Install dagger: ::
 
       pip install .
+
+Examples
+========
+
+Connecting to Pluto ::
+
+      import dagger
+      Pluto_IP = "192.168.4.1"
+      Pluto_PORT = 23
+      pluto = dagger.PlutoConnection()
+      pluto.connect((Pluto_IP, Pluto_PORT))
+
+Intiating the SetRawRc Object for Controlling the pluto Drone using the RC params ::
+
+      rc = dagger.SetRawRC(pluto)
+
+Arming the drone ::
+
+      rc.arm_drone()
+
+Disarming the drone::
+
+   rc.disarm_drone()
+
+General Information
+===================
+
+- `Website and Documentation <link URL>`_
+- `Tutorial <https://github.com/rohithvarma3000/dagger/blob/main/tutorials/dagger_example.ipynb>`_
+
+How to Use?
+===========
+Refer to our `tutorial <https://github.com/rohithvarma3000/dagger/blob/main/tutorials/dagger_example.ipynb>`_ to get started with dagger
 
 
 .. _dagger : https://github.com/rohithvarma3000/dagger.git
