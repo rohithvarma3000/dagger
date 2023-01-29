@@ -1,15 +1,16 @@
 """API defining checkpoint"""
 import sys
-from dagger.connect import PlutoConnection
-from dagger.set_command import SetCommand, CmdType
-from dagger.set_raw_rc import SetRawRC
-from dagger.altitude import Altitude
-from dagger.attitude import Attitude
-from dagger.analog import Analog
 from dagger.acc_calibration import AccCalibration
+from dagger.altitude import Altitude
+from dagger.analog import Analog
+from dagger.analog import Analog
+from dagger.attitude import Attitude
+from dagger.connect import PlutoConnection
+from dagger.control import PlutoControl
 from dagger.mag_calibration import MagCalibration
 from dagger.raw_imu import RawIMU
-from dagger.analog import Analog
+from dagger.set_command import SetCommand, CmdType
+from dagger.set_raw_rc import SetRawRC
 
 if sys.version_info[:2] >= (3, 8):
     # TODO: Import directly (no need for conditional) when `python_requires = >= 3.8`
