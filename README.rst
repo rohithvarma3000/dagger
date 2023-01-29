@@ -41,6 +41,6 @@ Installing the package from source
       pip install .
 
 
-.. _dagger : https://github.com/rohithvarma3000/neonVegWrangleR
+.. _dagger : https://github.com/rohithvarma3000/dagger.git
 
 
