@@ -125,7 +125,7 @@ Details of the Packet
 | Checksum        |            | XOR of Bytes of  “Msg length”, “Command” and all bytes of “Payload” |
 +-----------------+------------+---------------------------------------------------------------------+
 
-.. image:: ../asset/chart.png
+.. image:: https://raw.githubusercontent.com/rohithvarma3000/dagger/main/asset/chart.png
   :alt: Pluto Packet Direction Chart
 
 .. _dagger : https://github.com/rohithvarma3000/dagger.git
