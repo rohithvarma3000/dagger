@@ -4,7 +4,7 @@ from dagger.set_raw_rc import SetRawRC
 from dagger.set_command import CmdType
 
 
-class PlutoControl(SetRawRC, SetCommand):
+class PlutoControl():
     """Controls for the Pluto Drone.
 
     Parameters
@@ -21,7 +21,8 @@ class PlutoControl(SetRawRC, SetCommand):
 
     def __init__(self, connection):
         """Defines the class variable."""
-        super().__init__(connection=connection)
+        self.rc = SetRawRC(connection)
+        self.com = SetCommand(connection)
         self.connection = connection
 
     def take_off(self):
@@ -31,9 +32,9 @@ class PlutoControl(SetRawRC, SetCommand):
         --------
         >>> control.take_off()
         """
-        self.disarm_drone()
-        self.box_arm()
-        self.command(CmdType.TAKE_OFF)
+        self.rc.disarm_drone()
+        self.rc.box_arm()
+        self.com.command(CmdType.TAKE_OFF)
 
     def land(self):
         """Landing command for Pluto.
@@ -43,7 +44,7 @@ class PlutoControl(SetRawRC, SetCommand):
         >>> control.land()
         """
 
-        self.command(CmdType.land)
+        self.com.command(CmdType.LAND)
 
     def pitch_forward(self):
         """Forward Pitch command for Pluto.
@@ -52,7 +53,7 @@ class PlutoControl(SetRawRC, SetCommand):
         --------
         >>> control.pitch_forward()
         """
-        self.set_pitch(1600)
+        self.rc.set_pitch(1600)
 
     def pitch_backward(self):
         """Backward Pitch command for Pluto.
@@ -70,7 +71,7 @@ class PlutoControl(SetRawRC, SetCommand):
         --------
         >>> control.roll_left()
         """
-        self.set_roll(1400)
+        self.rc.set_roll(1400)
 
     def roll_right(self):
         """Right Roll command for Pluto.
@@ -79,7 +80,7 @@ class PlutoControl(SetRawRC, SetCommand):
         --------
         >>> control.roll_right()
         """
-        self.set_roll(1600)
+        self.rc.set_roll(1600)
 
     def left_yaw(self):
         """Left Yaw command for Pluto.
@@ -88,7 +89,7 @@ class PlutoControl(SetRawRC, SetCommand):
         --------
         >>> control.left_yaw()
         """
-        self.set_yaw(1200)
+        self.rc.set_yaw(1200)
 
     def right_yaw(self):
         """Right Yaw command for Pluto.
@@ -97,4 +98,4 @@ class PlutoControl(SetRawRC, SetCommand):
         --------
         >>> control.right_yaw()
         """
-        self.set_yaw(1800)
+        self.rc.set_yaw(1800)
