@@ -36,6 +36,7 @@ Installing the package from source
       git clone https://github.com/rohithvarma3000/dagger.git
 
 2. Change to dagger folder: ::
+      
       cd dagger
 
 3. Install the dependencies: ::
