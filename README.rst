@@ -25,7 +25,7 @@ Installing the Current Release
 
 If you have Python installed you can install the current release using either pip: ::
 
-   pip install pluto-dagger
+   pip install git+https://git@github.com/rohithvarma3000/dagger.git
 
 
 Installing the package from source
@@ -35,11 +35,14 @@ Installing the package from source
 
       git clone https://github.com/rohithvarma3000/dagger.git
 
-2. Install the dependencies: ::
+2. Change to dagger folder: ::
+      cd dagger
+
+3. Install the dependencies: ::
 
       pip install -r requirements.txt
 
-3. Install dagger: ::
+4. Install dagger: ::
 
       pip install .
 
