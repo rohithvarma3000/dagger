@@ -20,14 +20,6 @@ dagger
 Installation
 ============
 
-Installing the Current Release
-------------------------------
-
-If you have Python installed you can install the current release using either pip: ::
-
-   pip install git+https://git@github.com/rohithvarma3000/dagger.git
-
-
 Installing the package from source
 ----------------------------------
 
