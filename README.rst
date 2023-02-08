@@ -121,6 +121,18 @@ Details of the Packet
 | Checksum        |            | XOR of Bytes of  “Msg length”, “Command” and all bytes of “Payload” |
 +-----------------+------------+---------------------------------------------------------------------+
 
++---------------------------------------+
+|          MSP PACKETS USED             |
++=================+=====================+
+| MSP_RAW_IMU     | MSP_ALTITUDE        |
++-----------------+---------------------+
+| MSP_SET_RAW_RC  | MSP_ANALOG          |
++-----------------+---------------------+
+| MSP_SET_COMMAND | MSP_ACC_CALIBRATION |
++-----------------+---------------------+
+| MSP_ATTITUDE    | MSP_MAG_CALIBRATION |
++-----------------+---------------------+
+
 .. image:: https://raw.githubusercontent.com/rohithvarma3000/dagger/main/asset/chart.png
   :alt: Pluto Packet Direction Chart
 
