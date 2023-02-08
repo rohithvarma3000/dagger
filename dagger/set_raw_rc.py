@@ -17,7 +17,6 @@ class SetRawRC:
     >>> t.connect(('Pluto_IP', Pluto_port))
     >>> rc = dagger.SetRawRC(t)
     """
-
     __msg_length = 16
     __msg_code = 200
 
@@ -76,6 +75,17 @@ class SetRawRC:
         """
         self.throttle = throttle
         self._send()
+    
+    def set_rc_roll_pitch(self, roll, pitch):
+        self.roll = roll
+        self.pitch = pitch
+        self._send()
+        
+    def set_rct(self, roll, pitch, throttle):
+        self.roll = roll
+        self.pitch = pitch
+        self.throttle = throttle
+        self._send()
 
     def set_yaw(self, yaw):
         """Sets the yaw values in pluto
@@ -119,7 +129,7 @@ class SetRawRC:
         --------
         >>> rc.set_developer_mode_off()
         """
-        self.aux2 = 1100
+        self.aux2 = 1500
         self._send()
 
     def set_developer_mode_on(self):
@@ -129,7 +139,7 @@ class SetRawRC:
         --------
         >>> rc.set_developer_mode_on()
         """
-        self.aux2 = 1500
+        self.aux2 = 1100
         self._send()
 
     def set_alt_hold_mode(self):
@@ -176,6 +186,8 @@ class SetRawRC:
         self.yaw = 1500  # Yaw command = 0
         self.aux4 = 1500
         self._send()
+        print("box arming")
+        time.sleep(0.5)
 
     def disarm_drone(self):
         """Disarms the drone
@@ -187,6 +199,8 @@ class SetRawRC:
         self.aux4 = 1200
         self.throttle = 1300
         self._send()
+        print("disarming")
+        time.sleep(0.5)
 
     def _send(self):
         """Sends the RC Packet"""
