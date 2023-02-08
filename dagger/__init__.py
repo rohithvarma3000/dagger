@@ -3,7 +3,6 @@ import sys
 from dagger.acc_calibration import AccCalibration
 from dagger.altitude import Altitude
 from dagger.analog import Analog
-from dagger.analog import Analog
 from dagger.attitude import Attitude
 from dagger.connect import PlutoConnection
 from dagger.control import PlutoControl

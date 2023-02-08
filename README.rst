@@ -133,6 +133,32 @@ Details of the Packet
 | MSP_ATTITUDE    | MSP_MAG_CALIBRATION |
 +-----------------+---------------------+
 
++----------------+------------------------------------+
+| MODULE         | DESCRIPTION                        |
++================+====================================+
+| AccCalibration | Calibrates the accelerometer       |
++----------------+------------------------------------+
+| Altitude       | Get the Altitude data from Pluto   |
++----------------+------------------------------------+
+| Attitude       | Get the Attitude data from Pluto   |
++----------------+------------------------------------+
+| Analog         | Get the Analog data from Pluto     |
++----------------+------------------------------------+
+| MagCalibration | Calibrates the magnetometer        |
++----------------+------------------------------------+
+| PlutoConnection| Defines API Connection             |
++----------------+------------------------------------+
+| PlutoControl   | Controls for the Pluto Drone       |
++----------------+------------------------------------+
+| RawIMU         | Get the RawIMU data from Pluto     |
++----------------+------------------------------------+
+| SetCommand     | Sets the command in Pluto          |
++----------------+------------------------------------+
+| SetRawRC       | Controls the pluto using RC params |
++----------------+------------------------------------+
+
+
+
 .. image:: ./asset/chart.png
   :alt: Pluto Packet Direction Chart
 
