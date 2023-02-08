@@ -133,7 +133,7 @@ Details of the Packet
 | MSP_ATTITUDE    | MSP_MAG_CALIBRATION |
 +-----------------+---------------------+
 
-.. image:: https://raw.githubusercontent.com/rohithvarma3000/dagger/main/asset/chart.png
+.. image:: ./asset/chart.png
   :alt: Pluto Packet Direction Chart
 
 .. _dagger : https://github.com/rohithvarma3000/dagger.git
