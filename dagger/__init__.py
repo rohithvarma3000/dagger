@@ -6,6 +6,7 @@ from dagger.analog import Analog
 from dagger.attitude import Attitude
 from dagger.connect import PlutoConnection
 from dagger.control import PlutoControl
+from dagger.sensor import PlutoSensor
 from dagger.mag_calibration import MagCalibration
 from dagger.raw_imu import RawIMU
 from dagger.set_command import SetCommand, CmdType
