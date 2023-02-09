@@ -17,6 +17,7 @@ class SetRawRC:
     >>> t.connect(('Pluto_IP', Pluto_port))
     >>> rc = dagger.SetRawRC(t)
     """
+
     __msg_length = 16
     __msg_code = 200
 
@@ -75,12 +76,12 @@ class SetRawRC:
         """
         self.throttle = throttle
         self._send()
-    
+
     def set_rc_roll_pitch(self, roll, pitch):
         self.roll = roll
         self.pitch = pitch
         self._send()
-        
+
     def set_rct(self, roll, pitch, throttle):
         self.roll = roll
         self.pitch = pitch
@@ -220,8 +221,16 @@ class SetRawRC:
         aux3_bytes = bytearray(self.aux3.to_bytes(2, byteorder="little"))
         aux4_bytes = bytearray(self.aux4.to_bytes(2, byteorder="little"))
 
-        payload = (roll_bytes + pitch_bytes + throttle_bytes + yaw_bytes + aux1_bytes +
-                   aux2_bytes + aux3_bytes + aux4_bytes)
+        payload = (
+            roll_bytes
+            + pitch_bytes
+            + throttle_bytes
+            + yaw_bytes
+            + aux1_bytes
+            + aux2_bytes
+            + aux3_bytes
+            + aux4_bytes
+        )
 
         message = length_bytes + code_bytes + payload
         crc = calculate_crc(message)
